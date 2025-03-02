@@ -10,7 +10,7 @@ public class YTDLPServiceImpl implements YTDLPService {
 
     @Override
     public String getStreamUrl(String videoUrl) throws Exception {
-        ProcessBuilder pb = new ProcessBuilder("yt-dlp", "--get-url", videoUrl);
+        ProcessBuilder pb = new ProcessBuilder("yt-dlp", "-f", "best" ,"--get-url", videoUrl);
         Process process = pb.start();
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
