@@ -9,7 +9,19 @@ public class AsciiConverterService {
             '@', '#', '8', '&', '%', '$', '*', '+', '=', '-', ':', '.', ' '
     };
 
-    // Método que convierte la imagen en ASCII sin escalar la imagen
+
+    /**
+     *
+     * Metodo que convierte los frames de video en ASCII, corrigiendo la altura
+     * para evitar que el video quede cuadrado debido a la naturaleza rectangular
+     * de los caracteres
+     *
+     * @param imageStream Stream de contenido proveniente de YT accedido via FFmpeg
+     * @param targetWidth
+     * @param targetHeight
+     * @return Frame en ASCII, basado en su brillo
+     * @throws Exception
+     */
     public static String convertToAscii(InputStream imageStream, int targetWidth, int targetHeight) throws Exception {
         // Leer la imagen desde el InputStream
         BufferedImage img;
@@ -23,13 +35,11 @@ public class AsciiConverterService {
             return null;
         }
 
-        // Verificamos que la imagen tiene las dimensiones adecuadas
         if (img.getWidth() != targetWidth || img.getHeight() != targetHeight) {
             System.out.print("...");
             return null;
         }
 
-        // Convertir la imagen en texto ASCII
         StringBuilder ascii = new StringBuilder();
 
         // Factor de corrección para la altura (debido a la naturaleza vertical de los caracteres)

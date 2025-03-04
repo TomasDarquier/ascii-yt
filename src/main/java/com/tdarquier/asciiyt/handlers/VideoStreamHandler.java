@@ -11,6 +11,15 @@ import java.io.BufferedInputStream;
 import java.io.InputStream;
 
 public class VideoStreamHandler extends TextWebSocketHandler {
+    /**
+     *
+     * Maneja la recepcion de la URL a reproducir y se encarga
+     * de enviar los frames al cliente
+     *
+     * @param session
+     * @param message
+     * @throws Exception
+     */
     @Override
     public void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         String videoUrl = message.getPayload();
